@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fuju-nginx-azfile
+spec:
+  selector:
+    matchLabels:
+      app: fuju-nginx-azfile
+  template:
+    metadata:
+      labels:
+        app: fuju-nginx-azfile
+    spec:
+      containers:	  
+         - name: 1st-c
+           image: nginx
+           volumeMounts:
+             - name: html-volume
+               mountPath: /usr/share/nginx/html
+             - name: config-volume
+               mountPath: /mnt/config-1st
+         - name: 2nd-c
+           image: debian
+           volumeMounts:
+             - name: html-volume
+               mountPath: /mnt/html
+             - name: config-volume
+               mountPath: /mnt/config-2nd
+           command: ["/bin/sh", "-c"]
+           args:
+             - while true; do
+               date >> /mnt/html/index2.html;
+               date >> /mnt/config-2nd/my-config-file.txt;
+               sleep 5;
+               done	
+      volumes:
+         - name: html-volume
+           persistentVolumeClaim:
+             claimName: my-azurefile-n1
+         - name: config-volume
+           persistentVolumeClaim:
+             claimName: my-azurefile-n2
