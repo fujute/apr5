@@ -29,3 +29,12 @@ kubectl create secret generic azure-secret --from-literal=azurestorageaccountnam
 
 ##################################################
 ```
+##  kubectl
+```
+kubectl apply -f azurefile-mount-options-pv-pvc.yaml --namespace ratingsapp
+kubectl apply -f azurefile-mount-options-pv-pvc.yaml --namespace ratingsapp
+
+
+ kubectl exec fuju-nginx-azfile-s1-789887b6cc-p9fnb -c 1st-c -n ratingsapp -- /bin/cat /usr/share/nginx/html/dateoutput.txt
+ kubectl exec fuju-nginx-azfile-s1-789887b6cc-p9fnb -c 2nd-c -n ratingsapp -- /bin/cat /mnt/html/dateoutput.txt
+ ```
