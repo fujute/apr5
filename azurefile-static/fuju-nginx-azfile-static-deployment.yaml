@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fuju-nginx-azfile-s1
+  namespace: ratingsapp
+spec:
+  selector:
+    matchLabels:
+      app: fuju-nginx-azfile-s1
+  template:
+    metadata:
+      labels:
+        app: fuju-nginx-azfile-s1
+    spec:
+      containers:	  
+         - name: 1st-c
+           image: nginx
+           volumeMounts:
+             - name: html-volume
+               mountPath: /usr/share/nginx/html
+         - name: 2nd-c
+           image: debian
+           volumeMounts:
+             - name: html-volume
+               mountPath: /mnt/html
+           command: ["/bin/sh", "-c"]
+           args:
+             - while true; do
+               date >> /mnt/html/dateoutput.txt;
+               sleep 5;
+               done	
+      volumes:
+         - name: html-volume
+           persistentVolumeClaim:
+             claimName: azurefile-s1
