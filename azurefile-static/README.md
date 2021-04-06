@@ -25,16 +25,17 @@ az storage share create -n $AKS_PERS_SHARE_NAME --connection-string $AZURE_STORA
 STORAGE_KEY=$(az storage account keys list --resource-group $AKS_PERS_RESOURCE_GROUP --account-name $AKS_PERS_STORAGE_ACCOUNT_NAME --query "[0].value" -o tsv)
 #############################################
 
-kubectl create secret generic azure-secret --from-literal=azurestorageaccountname=$AKS_PERS_STORAGE_ACCOUNT_NAME --from-literal=azurestorageaccountkey=$STORAGE_KEY
-
-##################################################
 ```
 ##  kubectl
 ```
+kubectl create secret generic azure-secret --from-literal=azurestorageaccountname=$AKS_PERS_STORAGE_ACCOUNT_NAME --from-literal=azurestorageaccountkey=$STORAGE_KEY
+
+##################################################
+
 kubectl apply -f azurefile-mount-options-pv-pvc.yaml --namespace ratingsapp
 kubectl apply -f azurefile-mount-options-pv-pvc.yaml --namespace ratingsapp
 
 
- kubectl exec fuju-nginx-azfile-s1-789887b6cc-p9fnb -c 1st-c -n ratingsapp -- /bin/cat /usr/share/nginx/html/dateoutput.txt
- kubectl exec fuju-nginx-azfile-s1-789887b6cc-p9fnb -c 2nd-c -n ratingsapp -- /bin/cat /mnt/html/dateoutput.txt
- ```
+kubectl exec fuju-nginx-azfile-s1-789887b6cc-p9fnb -c 1st-c -n ratingsapp -- /bin/cat /usr/share/nginx/html/dateoutput.txt
+kubectl exec fuju-nginx-azfile-s1-789887b6cc-p9fnb -c 2nd-c -n ratingsapp -- /bin/cat /mnt/html/dateoutput.txt
+```
