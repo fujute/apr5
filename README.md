@@ -22,3 +22,8 @@ kubectl exec fuju-nginx-azfile-5c55fddc9f-6tgk  -c 1st-c -- /bin/cat /usr/share/
 kubectl exec fuju-nginx-azfile-5c55fddc9f-6tgk6 -c 1st-c -- /bin/cat /mnt/config-1st/my-config-file.txt
 kubectl exec fuju-nginx-azfile-5c55fddc9f-6tgk6 -c 2nd-c -- /bin/cat /mnt/config-2nd/my-config-file.txt
 ```
+
+## ref
+Transfer data with AzCopy and file storage : 
+https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-files
+
