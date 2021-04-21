@@ -90,7 +90,7 @@ spec:
       - name: install
         image: busybox
         volumeMounts:
-        - name: code
+        - name: my-code
           mountPath: /code
         command:
         - wget
@@ -102,7 +102,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: php-svc
+  name: php
 spec:
   selector:
     app: php
@@ -131,7 +131,7 @@ spec:
         tier: backend
     spec:
       volumes:
-      - name: code
+      - name: my-code
         persistentVolumeClaim:
           claimName: my-code
       - name: config
@@ -146,7 +146,7 @@ spec:
         ports:
         - containerPort: 80
         volumeMounts:
-        - name: code
+        - name: my-code
           mountPath: /code
         - name: config
           mountPath: /etc/nginx/conf.d
