@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-creds
+type: Opaque
+data:
+  MYSQL_USERNAME: bXlkYmFAc2FtcGxlZGIK
+  MYSQL_PASSWORD: U0FNUExFX1BBU1NXT1JECg==
+  MYSQL_HOSTNAME: U0FNUExFREIubWFyaWFkYi5kYXRhYmFzZS5henVyZS5jb20K

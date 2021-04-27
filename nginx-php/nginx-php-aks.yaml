@@ -83,6 +83,9 @@ spec:
       containers:
       - name: php
         image: php:7-fpm
+        envFrom:
+          - secretRef:
+              name: mysql-creds
         volumeMounts:
         - name: my-code
           mountPath: /code
