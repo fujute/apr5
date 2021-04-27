@@ -7,8 +7,8 @@ echo $ip;
 ?>
 </br>
 <?php
-$mysql-server = getenv('MYSQL_HOSTNAME', true) ?: getenv('MYSQL_HOSTNAME');
-echo $mysql
+$mysql_server = getenv('MYSQL_HOSTNAME', true) ?: getenv('MYSQL_HOSTNAME');
+echo $mysql_server;
 ?>
 </body>
 </html>
